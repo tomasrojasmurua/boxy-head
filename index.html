@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es">
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <style>html,body{margin:0}</style>
 <title>Boxy Head</title>
 <meta name="description" content="Shooter de oleadas de zombis. Juega solo o en línea con hasta 4 amigos.">
@@ -104,6 +104,29 @@ kbd{
   .overlay{gap:7px}
   .lede,.kicker.hide-sm{display:none}
   .title{font-size:clamp(24px,6.5vw,40px)}
+  .code-big{font-size:clamp(28px,12cqh,48px)}
+  .btn{padding:.5em 1.3em}
+  .field{padding:.3em .5em}
+  .roster li{padding:3px 9px}
+}
+.touch-only{display:none}
+.snd{display:none}
+/* Pantallas táctiles: el juego ocupa toda la pantalla; ayuda y barra inferior se ocultan. */
+@media (pointer:coarse){
+  html,body{overscroll-behavior:none}
+  body{padding-block:max(4px,env(safe-area-inset-top,0px)) max(4px,env(safe-area-inset-bottom,0px))}
+  .wrap{max-width:none;gap:0}
+  .bar,.help{display:none}
+  .stage{width:min(100%,calc((100dvh - 8px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px)) * 4 / 3));margin:0 auto;border:0}
+  .touch-only{display:block}
+  .snd{display:block;position:absolute;left:8px;top:52px;z-index:2;opacity:.7;padding:6px 12px;min-height:36px;font-size:14px}
+  .snd[aria-pressed="true"]{opacity:.4}
+  .btn,.chip{min-height:44px}
+  .rotate{display:none}
+}
+@media (pointer:coarse) and (orientation:portrait){
+  .rotate{display:block;color:var(--hazard);font-weight:700;letter-spacing:.06em}
+  .snd{display:none}
 }
 </style>
 
@@ -116,6 +139,8 @@ kbd{
       <h1 class="title">Boxy Head</h1>
       <p class="lede">Aguanta las oleadas de zombis, solo o con hasta 3 amigos en línea.</p>
       <p class="best" id="best" hidden></p>
+      <p class="note rotate" role="note">Gira el teléfono para jugar mejor.</p>
+      <p class="note touch-only">Palanca izquierda: mover. Palanca derecha: apuntar y disparar. Toca la barra de armas para cambiar.</p>
       <div class="row" id="joinInvite" hidden>
         <button class="btn" id="joinLink" type="button">Unirse a la sala</button>
       </div>
@@ -144,6 +169,8 @@ kbd{
         <button class="chip" id="leave" type="button">Salir de la sala</button>
       </div>
     </div>
+
+    <button class="chip snd" id="mute2" type="button" aria-pressed="false">Sonido</button>
 
     <div class="overlay" id="over" hidden>
       <p class="kicker">Fin de la partida</p>
@@ -866,8 +893,11 @@ function toggleMute() {
   muted = !muted;
   muteBtn.textContent = 'Sonido: ' + (muted ? 'no' : 'sí');
   muteBtn.setAttribute('aria-pressed', String(muted));
+  $('mute2').setAttribute('aria-pressed', String(muted));
+  $('mute2').textContent = muted ? 'Sin sonido' : 'Sonido';
 }
 muteBtn.addEventListener('click', () => { toggleMute(); muteBtn.blur(); });
+$('mute2').addEventListener('click', e => { toggleMute(); e.currentTarget.blur(); });
 
 /* ---------- Actualización ---------- */
 // Temporizadores visuales que corren en todas las pantallas.
