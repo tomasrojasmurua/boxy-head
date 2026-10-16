@@ -1,4 +1,4 @@
-# Cabeza Cúbica
+# Boxy Head
 
 Shooter cenital de oleadas de zombis hecho con Canvas, en un solo `index.html`. Se juega solo o en línea con hasta 4 jugadores.
 

@@ -1,4 +1,4 @@
-# Roadmap — Cabeza Cúbica
+# Roadmap — Boxy Head
 
 Marca con `[x]` lo que vayas completando.
 
