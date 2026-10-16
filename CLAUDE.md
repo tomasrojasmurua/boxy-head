@@ -1,4 +1,4 @@
-# CLAUDE.md — Cabeza Cúbica
+# CLAUDE.md — Boxy Head
 
 Contexto para continuar el desarrollo de este proyecto.
 
@@ -42,7 +42,7 @@ Estados: `state` es `'menu' | 'play' | 'over'`, más la bandera `paused` (solo s
 - Todo lo visual o sonoro que nace en la simulación (sangre, explosiones, puntos flotantes, avisos) pasa por `fx(tipo, ...)`: se ejecuta en el anfitrión y viaja en el campo `fx` de la foto siguiente. Para un efecto nuevo: entrada en `FX` y llamada con `fx()`, con argumentos que se puedan pasar a JSON.
 - `tp` cuenta las reapariciones: el anfitrión ignora posiciones de un invitado con `tp` viejo. `ws` cuenta los cambios de arma pedidos por el invitado.
 - Mensajes: `hola`/`bienvenida`/`llena`/`sala` (sala), `start`, `s` (foto), `in` (entrada), `over`, `ping` (latido cada segundo; 10 s de silencio da la conexión por perdida).
-- Id en el servidor de señalización: `cabeza-cubica-v1-` + código de 4 letras. Link de invitación: `?sala=CODIGO`. Si cambia el protocolo de red, subir el `v1` del prefijo.
+- Id en el servidor de señalización: `boxy-head-v1-` + código de 4 letras. Link de invitación: `?sala=CODIGO`. Si cambia el protocolo de red, subir el `v1` del prefijo.
 - Señalización con el servidor público gratuito de PeerJS (`0.peerjs.com`); los datos van directo entre navegadores (WebRTC) o por los servidores TURN de PeerJS si la red no deja conexión directa.
 
 ## Probar el multijugador en local

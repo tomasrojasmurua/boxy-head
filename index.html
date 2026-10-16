@@ -3,9 +3,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>html,body{margin:0}</style>
-<title>Cabeza Cúbica</title>
+<title>Boxy Head</title>
 <meta name="description" content="Shooter de oleadas de zombis. Juega solo o en línea con hasta 4 amigos.">
-<meta property="og:title" content="Cabeza Cúbica">
+<meta property="og:title" content="Boxy Head">
 <meta property="og:description" content="Entra a mi sala y aguantemos las oleadas de zombis. Hasta 4 jugadores.">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Barlow+Condensed:wght@500;600;700&display=swap">
@@ -109,11 +109,11 @@ kbd{
 
 <div class="wrap">
   <div class="stage" id="stage">
-    <canvas id="game" aria-label="Arena del juego Cabeza Cúbica"></canvas>
+    <canvas id="game" aria-label="Arena del juego Boxy Head"></canvas>
 
     <div class="overlay" id="menu">
       <p class="kicker hide-sm">Shooter de oleadas</p>
-      <h1 class="title">Cabeza Cúbica</h1>
+      <h1 class="title">Boxy Head</h1>
       <p class="lede">Aguanta las oleadas de zombis, solo o con hasta 3 amigos en línea.</p>
       <p class="best" id="best" hidden></p>
       <div class="row" id="joinInvite" hidden>
@@ -229,7 +229,7 @@ const COMBO_TIME = 3;
 const UI = '"Barlow Condensed","Arial Narrow",sans-serif';
 const DISP = 'Bungee,Impact,sans-serif';
 // Red
-const NET_PREFIX = 'cabeza-cubica-v1-';                 // prefijo del id en el servidor de señalización
+const NET_PREFIX = 'boxy-head-v1-';                 // prefijo del id en el servidor de señalización
 const CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';  // sin O/0 ni I/1 para dictarlo sin dudas
 const SNAP_MS = 50, INPUT_MS = 33;                      // foto del mundo a 20 Hz, entrada a 30 Hz
 const PING_MS = 1000, LOST_MS = 10000;                  // latido del anfitrión y silencio que da la sala por perdida
@@ -1439,7 +1439,7 @@ function renderLobby() {
   $('shareRow').hidden = !ready;
   if (ready) {
     const link = roomLink(net.code);
-    $('share').href = 'https://wa.me/?text=' + encodeURIComponent('¡Juguemos Cabeza Cúbica! Entra a mi sala ' + net.code + ': ' + link);
+    $('share').href = 'https://wa.me/?text=' + encodeURIComponent('¡Juguemos Boxy Head! Entra a mi sala ' + net.code + ': ' + link);
   }
   $('startOnline').hidden = !net.host || !ready;
   if (!ready) return;
@@ -1458,7 +1458,7 @@ $('share').addEventListener('click', e => {
   // en el móvil, la hoja de compartir del sistema también ofrece WhatsApp
   if (navigator.share && matchMedia('(pointer:coarse)').matches) {
     e.preventDefault();
-    navigator.share({ title: 'Cabeza Cúbica', text: '¡Juguemos Cabeza Cúbica! Entra a mi sala ' + net.code + ':', url: roomLink(net.code) }).catch(() => {});
+    navigator.share({ title: 'Boxy Head', text: '¡Juguemos Boxy Head! Entra a mi sala ' + net.code + ':', url: roomLink(net.code) }).catch(() => {});
   }
 });
 
